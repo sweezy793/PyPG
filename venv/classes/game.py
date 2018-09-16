@@ -1,5 +1,6 @@
 import random
 
+
 class colors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
@@ -24,5 +25,4 @@ class Player:
         self.moves = ["Attack", "Spell"]
 
     def damage(self):
-        return random.randrange(self.maxattack,self.minattack)
-    
+        return random.randrange(self.minattack,self.maxattack)
