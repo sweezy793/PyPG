@@ -26,3 +26,14 @@ class Player:
 
     def damage(self):
         return random.randrange(self.minattack,self.maxattack)
+
+    def damage_spell(self,i):
+        maxmag=self.magic[i]["dmg"]+5
+        minmag=self.magic[i]["dmg"]-5
+        return random.randrange(minmag,maxmag)
+
+    def damage_done(self,dmg):
+        self.health-=dmg
+        if self.health<0:
+            self.health=0
+        return self.health

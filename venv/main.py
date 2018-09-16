@@ -8,6 +8,5 @@ magic=[{"name":"Thunder Bolt","cost":10,"dmg":30},
 player=Player(500,100,50,50,magic)
 
 
-print(player.damage())
-print(player.damage())
-print(player.damage())
+print(player.damage_spell(0))
+
