@@ -37,3 +37,26 @@ class Player:
         if self.health<0:
             self.health=0
         return self.health
+
+    def get_health(self):
+        return self.health
+
+    def get_maxHealth(self):
+        return self.maxhealth
+
+    def get_mana(self):
+        return self.mana
+
+    def get_maxMana(self):
+        return self.maxmana
+
+    def mana_cost(self):
+        self.mana-=cost
+
+    def get_spell(self,i):
+        return self.magic[i]["name"]
+
+    def get_spell_mana(self,i):
+        return self.magic[i]["cost"]
+
+    
