@@ -22,7 +22,7 @@ class Player:
         self.minattack = attack-10
         self.defence = defence
         self.magic = magic
-        self.moves = ["Attack", "Spell"]
+        self.actions = ["Attack", "Spell"]
 
     def damage(self):
         return random.randrange(self.minattack,self.maxattack)
@@ -59,4 +59,19 @@ class Player:
     def get_spell_mana(self,i):
         return self.magic[i]["cost"]
 
-    
+    def select_action(self):
+        i=1
+        print()
+        print(colors.OKGREEN+colors.BOLD+"ACTIONS"+colors.ENDC)
+        print()
+        for item in self.actions:
+            print(str(i)+":", item)
+            i+=1
+
+    def select_magic(self):
+        i=1
+        print("SPELLS")
+        for spell in self.magic:
+            print(str(i)+":",spell["name"],"(cost:",str(spell["mana"])+")")
+            i+=1
+
