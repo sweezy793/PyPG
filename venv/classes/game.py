@@ -32,7 +32,7 @@ class Player:
         minmag=self.magic[i]["dmg"]-5
         return random.randrange(minmag,maxmag)
 
-    def damage_done(self,dmg):
+    def damage_taken(self,dmg):
         self.health-=dmg
         if self.health<0:
             self.health=0
@@ -72,6 +72,6 @@ class Player:
         i=1
         print("SPELLS")
         for spell in self.magic:
-            print(str(i)+":",spell["name"],"(cost:",str(spell["mana"])+")")
+            print(str(i)+":",spell["name"],"(cost:",str(spell["cost"])+")")
             i+=1
 
