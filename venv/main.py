@@ -1,12 +1,19 @@
 from classes.game import Player, colors
+from classes.spells import Spell
+import random
+
+fire = Spell("Hell Fire", 35, 150, "elemental")
+ice = Spell("Ice Blast", 30, 120, "elemental")
+thunder = Spell("Thunder Bolt", 10, 75, "elemental")
+air = Spell("Air Strike", 20, 100, "elemental")
+earth = Spell("Earthquake ", 15,115 , "elemental")
+
+heal=Spell("Heal",12,120,"healing")
+resore=Spell("Resore",18,200,"healing")
 
 
-magic=[{"name":"Thunder Bolt","cost":10,"dmg":80},
-       {"name": "Fire Strike", "cost":20 , "dmg":100},
-       {"name": "Ice Blast", "cost": 30, "dmg": 120}]
-
-hero=Player(500,150,50,50,magic)
-enemy=Player(1000,100,25,25,magic)
+hero=Player(500,150,50,50,[fire,ice,thunder,air,earth,heal,resore])
+enemy=Player(1000,100,25,25,[])
 
 running=True
 
@@ -25,18 +32,21 @@ while running:
     elif index==1:
         hero.select_magic()
         magic_choice=int(input("Choose a Magic Spell"))-1
-        magic_dmg=hero.damage_spell(magic_choice)
-        spell=hero.get_spell(magic_choice)
-        cost=hero.get_spell_mana(magic_choice)
+
+
+        spell=hero.magic[magic_choice]
+        magic_dmg=spell.spell_damage()
+
+
         current_mana=hero.get_mana()
 
-        if cost>current_mana:
+        if spell.cost>current_mana:
             print(colors.FAIL+"\n Not Enough Mana left\n"+colors.ENDC)
             continue
 
-        hero.reduce_mana(cost)
+        hero.reduce_mana(spell.cost)
         enemy.damage_taken(magic_dmg)
-        print(colors.OKBLUE+"\n"+spell+" deals",str(magic_dmg)," points of damage"+colors.ENDC)
+        print(colors.OKBLUE+"\n"+spell.name+" deals",str(magic_dmg)," points of damage"+colors.ENDC)
 
 
     enemy_choice=1

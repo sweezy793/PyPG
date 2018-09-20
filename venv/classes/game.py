@@ -27,16 +27,18 @@ class Player:
     def damage(self):
         return random.randrange(self.minattack,self.maxattack)
 
-    def damage_spell(self,i):
-        maxmag=self.magic[i]["dmg"]+5
-        minmag=self.magic[i]["dmg"]-5
-        return random.randrange(minmag,maxmag)
+
 
     def damage_taken(self,dmg):
         self.health-=dmg
         if self.health<0:
             self.health=0
         return self.health
+
+    def heal(self,dmg):
+        self.health+=dmg
+        if self.health>self.maxhealth:
+            self.health=self.maxhealth
 
     def get_health(self):
         return self.health
@@ -53,11 +55,7 @@ class Player:
     def reduce_mana(self,cost):
         self.mana-=cost
 
-    def get_spell(self,i):
-        return self.magic[i]["name"]
 
-    def get_spell_mana(self,i):
-        return self.magic[i]["cost"]
 
     def select_action(self):
         i=1
@@ -70,8 +68,10 @@ class Player:
 
     def select_magic(self):
         i=1
-        print("SPELLS")
+        print()
+        print(colors.OKBLUE+"SPELLS")
+        print("------"+colors.ENDC)
         for spell in self.magic:
-            print(str(i)+":",spell["name"],"(cost:",str(spell["cost"])+")")
+            print(str(i)+":",spell.name,"(cost:",str(spell.cost)+")")
             i+=1
 
