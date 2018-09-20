@@ -22,7 +22,7 @@ class Player:
         self.minattack = attack-10
         self.defence = defence
         self.magic = magic
-        self.actions = ["Attack", "Spell"]
+        self.actions = ["Melee Attack", "Magic Spell"]
 
     def damage(self):
         return random.randrange(self.minattack,self.maxattack)
@@ -50,7 +50,7 @@ class Player:
     def get_maxMana(self):
         return self.maxmana
 
-    def mana_cost(self):
+    def reduce_mana(self,cost):
         self.mana-=cost
 
     def get_spell(self,i):
