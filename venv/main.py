@@ -8,8 +8,8 @@ thunder = Spell("Thunder Bolt", 10, 75, "elemental")
 air = Spell("Air Strike", 20, 100, "elemental")
 earth = Spell("Earthquake ", 15,115 , "elemental")
 
-heal=Spell("Heal",12,120,"healing")
-resore=Spell("Resore",18,200,"healing")
+heal=Spell("Heal",8,80,"healing")
+resore=Spell("Resore",20,200,"healing")
 
 
 hero=Player(500,150,50,50,[fire,ice,thunder,air,earth,heal,resore])
@@ -45,15 +45,21 @@ while running:
             continue
 
         hero.reduce_mana(spell.cost)
-        enemy.damage_taken(magic_dmg)
-        print(colors.OKBLUE+"\n"+spell.name+" deals",str(magic_dmg)," points of damage"+colors.ENDC)
+
+        if spell.type=="healing" or spell.type=="restore":
+            hero.heal(magic_dmg)
+            print(colors.OKBLUE+"\n"+spell.name+" heals by ",str(magic_dmg)+colors.ENDC)
+        elif spell.type=="elemental":
+            enemy.damage_taken(magic_dmg)
+            print(colors.OKBLUE+"\n"+spell.name+" deals",str(magic_dmg)," points of damage"+colors.ENDC)
 
 
     enemy_choice=1
 
     enemy_dmg=enemy.damage()
     hero.damage_taken(enemy_dmg)
-    print("Enemy attacks for ",enemy_dmg)
+    print()
+    print(colors.FAIL+"Enemy attacks for ",enemy_dmg,colors.ENDC)
 
     print("-----------------------------")
     print("Enemy Health:",colors.FAIL+str(enemy.get_health())+"/"+str(enemy.get_maxHealth())+colors.ENDC+"\n")
