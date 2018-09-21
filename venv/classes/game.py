@@ -61,29 +61,29 @@ class Player:
 
     def select_action(self):
         i=1
-        print()
-        print(colors.OKGREEN+colors.BOLD+"ACTIONS"+colors.ENDC)
+        print("\n"+"     "+colors.BOLD+self.name+colors.ENDC)
+        print(colors.OKGREEN+colors.BOLD+"     ACTIONS"+colors.ENDC)
         print()
         for item in self.actions:
-            print("     " +str(i)+":", item)
+            print("         " +str(i)+":", item)
             i+=1
 
     def select_magic(self):
         i=1
         print()
-        print(colors.OKBLUE+"SPELLS")
-        print("------"+colors.ENDC)
+        print(colors.OKBLUE+"     SPELLS")
+        print("     ------"+colors.ENDC)
         for spell in self.magic:
-            print("     " +str(i)+")",spell.name,"(cost:",str(spell.cost)+")")
+            print("         " +str(i)+")",spell.name,"(cost:",str(spell.cost)+")")
             i+=1
 
     def select_item(self):
         i=1
         print()
-        print(colors.OKBLUE+"INVENTORY")
-        print("---------"+colors.ENDC)
+        print(colors.OKBLUE+"     INVENTORY")
+        print("     ---------"+colors.ENDC)
         for item in self.items:
-            print("     " +str(i)+")",item["item"].name,":",item["item"].description,"(x"+str(item["quantity"])+")")
+            print("         " +str(i)+")",item["item"].name,":",item["item"].description,"(x"+str(item["quantity"])+")")
             i+=1
 
     def get_stats(self):

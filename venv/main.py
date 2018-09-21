@@ -52,7 +52,7 @@ while running:
     for hero in heroes:
         hero.select_action()
         print()
-        choice=int(input("Choose an Action:"))
+        choice=int(input("     Choose an Action:"))
         index=choice-1
 
         if index==0:
@@ -62,7 +62,7 @@ while running:
         elif index==1:
             hero.select_magic()
             print()
-            magic_choice=int(input("Choose a Magic Spell"))-1
+            magic_choice=int(input("     Choose a Magic Spell"))-1
 
             if magic_choice==-1:
                 continue
@@ -88,7 +88,7 @@ while running:
         elif index==2:
             hero.select_item()
             print()
-            item_choice=int(input("Choose an Item from Inventory"))-1
+            item_choice=int(input("    Choose an Item from Inventory"))-1
 
             if item_choice==-1:
                 continue
