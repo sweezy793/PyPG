@@ -15,15 +15,15 @@ resore=Spell("Resore",20,200,"healing")
 
 smpotion=Item("Small Health Potion","potion","Heals 50",50)
 lgpotion=Item("Large Health Potion","potion","Heals 100",100)
-elixer = Item("Elixer", "elixer", "Fully restores HP/MP of one team member", 9999)
-lgelixer = Item("Large Elixer", "elixer", "Fully restores team's HP/MP", 9999)
+elixir = Item("Elixir", "elixir", "Fully restores Health and Mana of one team member", 9999)
+lgelixir = Item("Large Elixir", "elixir", "Fully restores team's Health and Mana", 9999)
 
 dagger = Item("Dagger", "attack", "Deals 120 damage", 120)
 bomb = Item("Bomb", "attack", "Deals 80 damage", 80)
 
 
 hero_spells=[fire,ice,thunder,air,earth,heal,resore]
-hero_items=[smpotion,lgpotion,elixer,lgelixer,dagger,bomb]
+hero_items=[smpotion,lgpotion,elixir,lgelixir,dagger,bomb]
 
 hero=Player(500,150,50,50,hero_spells,hero_items)
 enemy=Player(1000,100,25,25,[],[])
@@ -82,6 +82,14 @@ while running:
         if item.type=="potion":
             hero.heal(item.prop)
             print(colors.OKGREEN+"\n"+item.name+" healed by ",str(item.prop),colors.ENDC)
+
+        elif item.type=="elixir":
+            hero.health=hero.maxhealth
+            hero.mana=hero.maxmana
+            print(colors.OKGREEN+"\n"+item.name+" fully restored health and mana "+colors.ENDC)
+        elif item.type=="attack":
+            enemy.damage_taken(item.prop)
+            print(colors.FAIL+"\n"+item.name+" deals ",str(item.prop), " damage"+colors.ENDC)
 
     enemy_choice=1
 
