@@ -13,7 +13,7 @@ heal=Spell("Heal",8,80,"healing")
 resore=Spell("Resore",20,200,"healing")
 
 
-smpotion=Item("Small Health Potion","potion","Heals 50",50)
+smpotion=Item("Small Health Potion","potion","Heals 20",20)
 lgpotion=Item("Large Health Potion","potion","Heals 100",100)
 elixir = Item("Elixir", "elixir", "Fully restores Health and Mana of one team member", 9999)
 lgelixir = Item("Large Elixir", "elixir", "Fully restores team's Health and Mana", 9999)
@@ -23,7 +23,7 @@ bomb = Item("Bomb", "attack", "Deals 80 damage", 80)
 
 
 hero_spells=[fire,ice,thunder,air,earth,heal,resore]
-hero_items=[smpotion,lgpotion,elixir,lgelixir,dagger,bomb]
+hero_items=[{"item":smpotion,"quantity":10},{"item":lgpotion,"quantity":5},{"item":elixir,"quantity":3},{"item":lgelixir,"quantity":1},{"item":dagger,"quantity":5},{"item":bomb,"quantity":8},]
 
 hero=Player(500,150,50,50,hero_spells,hero_items)
 enemy=Player(1000,100,25,25,[],[])
@@ -77,7 +77,14 @@ while running:
         if item_choice==-1:
             continue
 
-        item=hero.items[item_choice]
+        item=hero.items[item_choice]["item"]
+        if hero.items[item_choice]["quantity"]==0:
+            print(colors.FAIL+"\n"+"None left..."+colors.ENDC)
+            continue
+        hero.items[item_choice]["quantity"]-=1
+
+
+
 
         if item.type=="potion":
             hero.heal(item.prop)
