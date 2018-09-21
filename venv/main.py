@@ -22,7 +22,10 @@ dagger = Item("Dagger", "attack", "Deals 120 damage", 120)
 bomb = Item("Bomb", "attack", "Deals 80 damage", 80)
 
 
-hero=Player(500,150,50,50,[fire,ice,thunder,air,earth,heal,resore],[])
+hero_spells=[fire,ice,thunder,air,earth,heal,resore]
+hero_items=[smpotion,lgpotion,elixer,lgelixer,dagger,bomb]
+
+hero=Player(500,150,50,50,hero_spells,hero_items)
 enemy=Player(1000,100,25,25,[],[])
 
 running=True
@@ -32,6 +35,7 @@ print(colors.FAIL+colors.BOLD+"You are under attack!"+colors.ENDC)
 while running:
     print(colors.FAIL+"---------------------"+colors.ENDC)
     hero.select_action()
+    print()
     choice=int(input("Choose an Action:"))
     index=choice-1
 
@@ -41,8 +45,11 @@ while running:
         print("You attacked for ",dmg, "points of damage.")
     elif index==1:
         hero.select_magic()
+        print()
         magic_choice=int(input("Choose a Magic Spell"))-1
 
+        if magic_choice==-1:
+            continue
 
         spell=hero.magic[magic_choice]
         magic_dmg=spell.spell_damage()
@@ -58,14 +65,23 @@ while running:
 
         if spell.type=="healing" or spell.type=="restore":
             hero.heal(magic_dmg)
-            print(colors.OKBLUE+"\n"+spell.name+" heals by ",str(magic_dmg)+colors.ENDC)
+            print(colors.OKBLUE+"\n"+spell.name+" healed by ",str(magic_dmg),colors.ENDC)
         elif spell.type=="elemental":
             enemy.damage_taken(magic_dmg)
             print(colors.OKBLUE+"\n"+spell.name+" deals",str(magic_dmg)," points of damage"+colors.ENDC)
     elif index==2:
         hero.select_item()
+        print()
         item_choice=int(input("Choose an Item from Inventory"))-1
 
+        if item_choice==-1:
+            continue
+
+        item=hero.items[item_choice]
+
+        if item.type=="potion":
+            hero.heal(item.prop)
+            print(colors.OKGREEN+"\n"+item.name+" healed by ",str(item.prop),colors.ENDC)
 
     enemy_choice=1
 

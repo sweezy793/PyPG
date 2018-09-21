@@ -64,7 +64,7 @@ class Player:
         print(colors.OKGREEN+colors.BOLD+"ACTIONS"+colors.ENDC)
         print()
         for item in self.actions:
-            print(str(i)+":", item)
+            print("     " +str(i)+":", item)
             i+=1
 
     def select_magic(self):
@@ -73,14 +73,14 @@ class Player:
         print(colors.OKBLUE+"SPELLS")
         print("------"+colors.ENDC)
         for spell in self.magic:
-            print(str(i)+")",spell.name,"(cost:",str(spell.cost)+")")
+            print("     " +str(i)+")",spell.name,"(cost:",str(spell.cost)+")")
             i+=1
 
     def select_item(self):
         i=1
         print()
         print(colors.OKBLUE+"INVENTORY")
-        print("------"+colors.ENDC)
+        print("---------"+colors.ENDC)
         for item in self.items:
-            print(str(i)+")",item.name,":",item.description,"(x5)")
+            print("     " +str(i)+")",item.name,":",item.description,"(x5)")
             i+=1
