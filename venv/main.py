@@ -1,5 +1,6 @@
 from classes.game import Player, colors
 from classes.spells import Spell
+from classes.inventory import Item
 import random
 
 fire = Spell("Hell Fire", 35, 150, "elemental")
@@ -12,8 +13,17 @@ heal=Spell("Heal",8,80,"healing")
 resore=Spell("Resore",20,200,"healing")
 
 
-hero=Player(500,150,50,50,[fire,ice,thunder,air,earth,heal,resore])
-enemy=Player(1000,100,25,25,[])
+smpotion=Item("Small Health Potion","potion","Heals 50",50)
+lgpotion=Item("Large Health Potion","potion","Heals 100",100)
+elixer = Item("Elixer", "elixer", "Fully restores HP/MP of one team member", 9999)
+lgelixer = Item("Large Elixer", "elixer", "Fully restores team's HP/MP", 9999)
+
+dagger = Item("Dagger", "attack", "Deals 120 damage", 120)
+bomb = Item("Bomb", "attack", "Deals 80 damage", 80)
+
+
+hero=Player(500,150,50,50,[fire,ice,thunder,air,earth,heal,resore],[])
+enemy=Player(1000,100,25,25,[],[])
 
 running=True
 
@@ -52,6 +62,9 @@ while running:
         elif spell.type=="elemental":
             enemy.damage_taken(magic_dmg)
             print(colors.OKBLUE+"\n"+spell.name+" deals",str(magic_dmg)," points of damage"+colors.ENDC)
+    elif index==2:
+        hero.select_item()
+        item_choice=int(input("Choose an Item from Inventory"))-1
 
 
     enemy_choice=1

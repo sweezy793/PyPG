@@ -13,7 +13,7 @@ class colors:
 
 
 class Player:
-    def __init__(self,health,mana,attack,defence,magic):
+    def __init__(self,health,mana,attack,defence,magic,items):
         self.maxhealth = health
         self.health = health
         self.maxmana = mana
@@ -22,7 +22,8 @@ class Player:
         self.minattack = attack-10
         self.defence = defence
         self.magic = magic
-        self.actions = ["Melee Attack", "Magic Spell"]
+        self.items=items
+        self.actions = ["Melee Attack", "Magic Spell","Inventory"]
 
     def damage(self):
         return random.randrange(self.minattack,self.maxattack)
@@ -72,6 +73,14 @@ class Player:
         print(colors.OKBLUE+"SPELLS")
         print("------"+colors.ENDC)
         for spell in self.magic:
-            print(str(i)+":",spell.name,"(cost:",str(spell.cost)+")")
+            print(str(i)+")",spell.name,"(cost:",str(spell.cost)+")")
             i+=1
 
+    def select_item(self):
+        i=1
+        print()
+        print(colors.OKBLUE+"INVENTORY")
+        print("------"+colors.ENDC)
+        for item in self.items:
+            print(str(i)+")",item.name,":",item.description,"(x5)")
+            i+=1
