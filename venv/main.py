@@ -27,10 +27,10 @@ bomb = Item("Bomb", "attack", "Deals 80 damage", 80)
 hero_spells=[fire,ice,thunder,air,earth,heal,resore]
 hero_items=[{"item":smpotion,"quantity":10},{"item":lgpotion,"quantity":5},{"item":elixir,"quantity":3},{"item":lgelixir,"quantity":1},{"item":dagger,"quantity":5},{"item":bomb,"quantity":8},]
 
-hero1=Player("Tony :",500,150,50,50,hero_spells,hero_items)
-hero2=Player("Steve:",500,150,50,50,hero_spells,hero_items)
-hero3=Player("John :",500,150,50,50,hero_spells,hero_items)
-enemy=Player("Thanos",1000,100,25,25,[],[])
+hero1=Player("Tony :",500,150,100,50,hero_spells,hero_items)
+hero2=Player("Steve:",500,150,100,50,hero_spells,hero_items)
+hero3=Player("John :",500,150,100,50,hero_spells,hero_items)
+enemy=Player("Thanos",3000,100,200,25,[],[])
 
 heroes=[hero1,hero2,hero3]
 

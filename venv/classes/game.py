@@ -87,13 +87,51 @@ class Player:
             i+=1
 
     def get_stats(self):
-        bar=""
+        hp_bar=""
         bar_ticks=(self.health/self.maxhealth)*100/4
 
-        while bar_ticks>0:
-            bar+="▓"
-            bar_ticks-=1
+        mp_bar=""
+        mp_ticks=(self.mana/self.maxmana)*100/10
 
-        print("                  ___________________             __________")
-        print(colors.BOLD+self.name+"   "+str(self.health)+"/"+str(self.maxhealth)+ " "+"|"+colors.OKGREEN+"▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓"+colors.ENDC+"|" + "    " +colors.BOLD+ str(self.mana)+"/"+str(self.maxmana)+"|"+colors.OKBLUE+"▓▓▓▓▓▓▓▓▓▓"+colors.ENDC+"|")
+        while bar_ticks>0:
+            hp_bar+="▓"
+            bar_ticks-=1
+        while len(hp_bar)<25:
+            hp_bar+=" "
+
+        while mp_ticks>0:
+            mp_bar+="▓"
+            mp_ticks-=1
+
+        while len(mp_bar)<10:
+            mp_bar+=" "
+
+        health_string=str(self.health)+"/"+str(self.maxhealth)
+        current_health=""
+        if len(health_string)<7:
+            decreased=7-len(health_string)
+
+            while decreased >0:
+                current_health+=" "
+                decreased-=1
+
+            current_health+=health_string
+        else:
+            current_health=health_string
+
+        mana_string=str(self.mana)+"/"+str(self.maxmana)
+        current_mana=""
+
+        if len(mana_string)<7:
+            decreased=7-len(mana_string)
+            while decreased>0:
+                current_mana+=" "
+                decreased-=1
+            current_mana+=mana_string
+        else:
+            current_mana=mana_string
+
+
+        print("                  _________________________             __________")
+        print(colors.BOLD+self.name+"   "+current_health+ " "+"|"+colors.OKGREEN+hp_bar+colors.ENDC+"|" + "    " +colors.BOLD+ current_mana+"|"+colors.OKBLUE+mp_bar+colors.ENDC+"|")
 
