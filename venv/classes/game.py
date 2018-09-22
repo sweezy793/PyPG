@@ -87,6 +87,13 @@ class Player:
             i+=1
 
     def get_stats(self):
+        bar=""
+        bar_ticks=(self.health/self.maxhealth)*100/4
+
+        while bar_ticks>0:
+            bar+="▓"
+            bar_ticks-=1
+
         print("                  ___________________             __________")
         print(colors.BOLD+self.name+"   "+str(self.health)+"/"+str(self.maxhealth)+ " "+"|"+colors.OKGREEN+"▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓"+colors.ENDC+"|" + "    " +colors.BOLD+ str(self.mana)+"/"+str(self.maxmana)+"|"+colors.OKBLUE+"▓▓▓▓▓▓▓▓▓▓"+colors.ENDC+"|")
 
