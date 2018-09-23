@@ -85,6 +85,30 @@ class Player:
         for item in self.items:
             print("         " +str(i)+")",item["item"].name,":",item["item"].description,"(x"+str(item["quantity"])+")")
             i+=1
+    def get_enemy_stats(self):
+        hp_bar=""
+        bar_ticks=(self.health/self.maxhealth)*100/2
+        while bar_ticks>0:
+            hp_bar+="▓"
+            bar_ticks-=1
+        while len(hp_bar)<50:
+            hp_bar+=" "
+
+        health_string = str(self.health) + "/" + str(self.maxhealth)
+        current_health = ""
+        if len(health_string) < 9:
+            decreased = 9 - len(health_string)
+
+            while decreased > 0:
+                current_health += " "
+                decreased -= 1
+
+            current_health += health_string
+        else:
+            current_health = health_string
+
+        print("                     __________________________________________________")
+        print(colors.BOLD + self.name + "   " + current_health + " " + "|" + colors.FAIL + hp_bar + colors.ENDC + "|" )
 
     def get_stats(self):
         hp_bar=""
@@ -131,7 +155,6 @@ class Player:
         else:
             current_mana=mana_string
 
-
-        print("                  _________________________             __________")
+        print("                   _________________________             __________")
         print(colors.BOLD+self.name+"   "+current_health+ " "+"|"+colors.OKGREEN+hp_bar+colors.ENDC+"|" + "    " +colors.BOLD+ current_mana+"|"+colors.OKBLUE+mp_bar+colors.ENDC+"|")
 

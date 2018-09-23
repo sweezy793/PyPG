@@ -27,10 +27,10 @@ bomb = Item("Bomb", "attack", "Deals 80 damage", 80)
 hero_spells=[fire,ice,thunder,air,earth,heal,resore]
 hero_items=[{"item":smpotion,"quantity":10},{"item":lgpotion,"quantity":5},{"item":elixir,"quantity":3},{"item":lgelixir,"quantity":1},{"item":dagger,"quantity":5},{"item":bomb,"quantity":8},]
 
-hero1=Player("Tony :",500,150,100,50,hero_spells,hero_items)
-hero2=Player("Steve:",500,150,100,50,hero_spells,hero_items)
-hero3=Player("John :",500,150,100,50,hero_spells,hero_items)
-enemy=Player("Thanos",3000,100,200,25,[],[])
+hero1=Player("Tony  :",900,150,100,50,hero_spells,hero_items)
+hero2=Player("Steve :",900,150,100,50,hero_spells,hero_items)
+hero3=Player("John  :",900,150,100,50,hero_spells,hero_items)
+enemy=Player("Thanos:",5000,100,200,25,[],[])
 
 heroes=[hero1,hero2,hero3]
 
@@ -48,6 +48,8 @@ while running:
         hero.get_stats()
 
     print("\n")
+
+    enemy.get_enemy_stats()
 
     for hero in heroes:
         hero.select_action()
@@ -99,31 +101,31 @@ while running:
                 continue
             hero.items[item_choice]["quantity"]-=1
 
-
-
-
             if item.type=="potion":
                 hero.heal(item.prop)
                 print(colors.OKGREEN+"\n"+item.name+" healed by ",str(item.prop),colors.ENDC)
 
             elif item.type=="elixir":
-                hero.health=hero.maxhealth
-                hero.mana=hero.maxmana
+
+                if item.name=="Large Elixir":
+                    for i in heroes:
+                        i.health = i.maxhealth
+                        i.mana = i.maxmana
+                else:
+                    hero.health=hero.maxhealth
+                    hero.mana=hero.maxmana
                 print(colors.OKGREEN+"\n"+item.name+" fully restored health and mana "+colors.ENDC)
             elif item.type=="attack":
                 enemy.damage_taken(item.prop)
                 print(colors.FAIL+"\n"+item.name+" deals ",str(item.prop), " damage"+colors.ENDC)
 
     enemy_choice=1
+    target=random.randrange(0,3)
 
     enemy_dmg=enemy.damage()
-    hero.damage_taken(enemy_dmg)
+    heroes[target].damage_taken(enemy_dmg)
     print()
-    print(colors.FAIL+"Enemy attacks for ",enemy_dmg,colors.ENDC)
-
-    print("-----------------------------")
-    print("Enemy Health:",colors.FAIL+str(enemy.get_health())+"/"+str(enemy.get_maxHealth())+colors.ENDC+"\n")
-
+    
     if enemy.get_health()==0:
         print(colors.OKGREEN+"You Win!"+colors.ENDC)
         running=False
