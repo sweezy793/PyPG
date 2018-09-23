@@ -125,7 +125,7 @@ while running:
     enemy_dmg=enemy.damage()
     heroes[target].damage_taken(enemy_dmg)
     print()
-    
+
     if enemy.get_health()==0:
         print(colors.OKGREEN+"You Win!"+colors.ENDC)
         running=False
